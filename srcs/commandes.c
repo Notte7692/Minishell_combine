@@ -6,26 +6,11 @@
 /*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:24:32 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/17 17:45:32 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/19 16:46:13 by nbechon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-// void	commande_ls(char *word)
-// {
-// 	DIR				*dir;
-// 	struct dirent	*entry;
-
-// 	if (word == NULL)
-// 		exit (0);
-// 	dir = opendir(word);
-// 	while ((entry = readdir(dir)) != NULL)
-// 	{
-// 		printf ("%s\n", entry->d_name);
-// 	}
-// 	closedir(dir);
-// }
 
 void	commande_echo(char *first, char *word)
 {
@@ -42,9 +27,19 @@ void	commande_echo(char *first, char *word)
 		printf ("%s", word);
 }
 
-void	commande_pwd(void)
+//PAS FORCEMENT OPTI
+int	commande_pwd(void)
 {
-	printf ("/mnt/nfs/homes/nbechon/Projects/MiniShell");
+	char	cwd[1000];
+
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+		printf("%s\n", cwd);
+	else
+	{
+		perror("PWD");
+		return (1);
+	}
+	return (0);
 }
 
 int	commande_cd(char *word)

@@ -6,7 +6,7 @@
 /*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:15 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/19 14:27:57 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/19 16:41:29 by nbechon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	list_of_command(char *first, char *seconde)
 {
-	// if (compare(first, LS) == 0)
-	// 	commande_ls(seconde);
 	if (compare(first, ECHO) == 0 || compare(first, ECHO_N) == 0)
 	{
 		if (seconde == NULL)
@@ -40,7 +38,7 @@ int	main(void)
 
 	while (1)
 	{
-		user_input = readline("> ");
+		user_input = readline("$ ");
 		add_history(user_input);
 		first = take_firstword(user_input);
 		seconde = take_second_word(user_input);
