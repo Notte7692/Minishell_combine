@@ -6,7 +6,7 @@
 /*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:29:55 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/19 16:45:40 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/22 14:37:23 by nbechon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*take_firstword(char *input)
 	if (space == 0)
 		len = i;
 	else
-		while (input[len] != ' ' || input[len + 1] == '-')
+		while (input[len] != ' ' || input[len + 1] == '-' || input[len] == 'n')
 			len++;
 	word = malloc(sizeof(char) * (len + 1));
 	if (!word)

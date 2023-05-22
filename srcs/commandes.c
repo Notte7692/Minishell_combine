@@ -6,7 +6,7 @@
 /*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:24:32 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/19 16:46:13 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/22 14:34:46 by nbechon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,15 @@ int	commande_cd(char *word)
 		return (1);
 	}
 	return (0);
+}
+
+char	*commande_env(void)
+{
+	const char	*variable;
+	char		*valeur;
+
+	variable = "USER";
+	valeur = getenv(variable);
+	printf ("%s\n", valeur);
+	return (valeur);
 }

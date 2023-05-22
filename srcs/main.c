@@ -6,7 +6,7 @@
 /*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:15 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/19 16:41:29 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/22 14:54:59 by nbechon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	list_of_command(char *first, char *seconde)
 		commande_pwd();
 	if (compare(first, CD) == 0)
 		commande_cd(seconde);
+	if (compare(first, ENV) == 0)
+		commande_env();
 	free (first);
 	free (seconde);
 }
@@ -43,8 +45,8 @@ int	main(void)
 		first = take_firstword(user_input);
 		seconde = take_second_word(user_input);
 		list_of_command(first, seconde);
-		if (strcmp(user_input, "exit") == 0)
-			break ;
+		// if (strcmp(user_input, "exit") == 0)
+		// 	break ;
 		free(user_input);
 	}
 	return (0);

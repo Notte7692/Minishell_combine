@@ -6,7 +6,7 @@
 /*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:07 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/19 16:41:22 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/22 14:41:29 by nbechon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define CD "cd"
 # define PWD "pwd"
 # define EXIT "exit"
+# define ENV "env"
 
 void	commande_ls(char *word);
 
@@ -41,5 +42,7 @@ char	*take_firstword(char *argv);
 int		compare(char *word, char *tmp);
 
 int		commande_cd(char *word);
+
+char	*commande_env(void);
 
 #endif
