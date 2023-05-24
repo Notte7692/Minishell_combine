@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsalhi <nsalhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:07 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/24 14:56:21 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/24 16:03:48 by nsalhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,41 @@
 # define ENV "env"
 # define EXPORT "export"
 # define UNSET "unset"
+
+
+//////////////////// ENUM /////////////////////
+
+typedef enum
+{
+	COMMAND = 0,
+	RED_INF,
+	PIPES,
+	ENV_VAR,
+	SUBSTITUTE,
+	SQUOTE,
+	DQUOTE,
+	FLAG,
+	APPEND,
+	TRUNCATE,
+
+}	arg_type;
+
+//////////////////// TOKEN_ELEM ///////////////////
+
+typedef struct s_elem
+{
+	char	*value;
+	arg_type	type;
+}	t_elem;
+
+/////////////////// TOKEN_STRUCT //////////////////
+
+typedef struct s_stack
+{
+	t_elem *elem;
+	struct s_stack	*previous;
+	struct s_stack *next;
+}	t_token;
 
 //////////////////// signal.c /////////////////////
 
