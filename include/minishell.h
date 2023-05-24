@@ -6,7 +6,7 @@
 /*   By: nsalhi <nsalhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:07 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/24 16:03:48 by nsalhi           ###   ########.fr       */
+/*   Updated: 2023/05/24 17:20:50 by nsalhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define UNSET "unset"
 
 
-//////////////////// ENUM /////////////////////
+//////////////////// ENUM ////////////////////
 
 typedef enum
 {
@@ -97,6 +97,15 @@ void	commande_exit(char *input);
 
 void	printf_exit2(void);
 void	printf_exit(char *arg);
+
+/////////////// parsing.c //////////////////////
+void	free_tab(char **tab);
+size_t	ft_strlen(const char *str);
+int	tab_size(char *str);
+char	**create_tab(char *av);
+t_token *create_token_stack(char **av);
+void print_token_stack(t_token *head);
+void free_token_stack(t_token *head);
 
 ///////////////////////////////////////////////////
 

@@ -6,11 +6,24 @@
 /*   By: nsalhi <nsalhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:04:32 by nsalhi            #+#    #+#             */
-/*   Updated: 2023/05/24 16:18:35 by nsalhi           ###   ########.fr       */
+/*   Updated: 2023/05/24 17:20:40 by nsalhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
 
 size_t	ft_strlen(const char *str)
 {
@@ -84,7 +97,7 @@ int	tab_size(char *str)
 	return (count);
 }
 
-char	**tab(char *av)
+char	**create_tab(char *av)
 {
 	int	i;
 	int	start;
@@ -205,7 +218,8 @@ t_token *create_token_stack(char **av)
     return head;
 }
 
-void print_token_stack(t_token *head) {
+void print_token_stack(t_token *head)
+{
     t_token *current = head;
     while (current != NULL) {
         printf("Value: %s, Type: %d\n", current->elem->value, current->elem->type);
@@ -213,7 +227,8 @@ void print_token_stack(t_token *head) {
     }
 }
 
-void free_token_stack(t_token *head) {
+void free_token_stack(t_token *head) 
+{
     t_token *current = head;
     while (current != NULL) {
         t_token *temp = current;
@@ -227,15 +242,20 @@ void free_token_stack(t_token *head) {
 /*
 int main() {
     //char *av[] = {"<command", "arg1", "<", "|", "env_var", ">>", ">", "\'", "\"", NULL};
-    char input[] = "hello world <<< >>>> >> < >cat ls -la cat | ls .txt | command";
-    char **av = tab(input);
+    char    *user_input;
+    char    **av;
 
+	user_input = readline("$ ");
+    av = create_tab(user_input);
     t_token *token_stack = create_token_stack(av);
     print_token_stack(token_stack);
 
     // Free the allocated memory
     free_token_stack(token_stack);
-
+    free(user_input);
+    free_tab(av);
+   
+    
     return 0;
 }
 

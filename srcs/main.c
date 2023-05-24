@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbechon <nbechon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nsalhi <nsalhi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:15 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/24 14:54:27 by nbechon          ###   ########.fr       */
+/*   Updated: 2023/05/24 17:24:50 by nsalhi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,14 @@ int	main(int argc, char *argv[], char **env)
 	char				*user_input;
 	char				*seconde;
 	char				*first;
+	char	**tab;
+	t_token *token_stack;
 
 	(void)argc;
 	(void)argv;
+	user_input = NULL;
+	token_stack = NULL;
+	tab = NULL;
 	if (isatty(STDIN_FILENO))
 	{
 		signal_crtl();
@@ -52,6 +57,11 @@ int	main(int argc, char *argv[], char **env)
 			user_input = readline("$ ");
 			if (user_input == NULL)
 				break ;
+			tab = create_tab(user_input);
+    		token_stack = create_token_stack(tab);
+    		print_token_stack(token_stack);
+			free_token_stack(token_stack);
+    		free_tab(tab);
 			add_history(user_input);
 			first = take_firstword(user_input);
 			seconde = take_second_word(user_input);
@@ -61,6 +71,6 @@ int	main(int argc, char *argv[], char **env)
 	}
 	else
 		printf("L'entrée standard n'est pas un terminal interactif.\n");
+	
 	return (0);
 }
- 
