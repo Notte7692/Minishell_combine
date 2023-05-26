@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsalhi <nsalhi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:15 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/24 17:24:50 by nsalhi           ###   ########.fr       */
+/*   Updated: 2023/05/25 19:52:40 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	list_of_command(char *first, char *seconde, char **env, char *input)
 	free (first);
 	free (seconde);
 }
-
+/*
 int	main(int argc, char *argv[], char **env)
 {
 	char				*user_input;
@@ -74,3 +74,4 @@ int	main(int argc, char *argv[], char **env)
 	
 	return (0);
 }
+*/
