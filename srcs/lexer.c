@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 10:59:10 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/27 18:29:38 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/27 18:53:47 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int lexer(char  *rline)
 		return(1);
 }
 
-
+/*
 int main() {
     char input[100];
     printf("Enter a command: ");
@@ -155,3 +155,4 @@ int main() {
 
     return (0);
 }
+*/
