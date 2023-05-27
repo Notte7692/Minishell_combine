@@ -6,11 +6,19 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:04:32 by nsalhi            #+#    #+#             */
-/*   Updated: 2023/05/27 09:48:31 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/27 18:45:10 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+int	exit_syntax_error(void)
+{
+	write(2, "minishell: Invalid Syntax at token\n", 36);
+	set_err_code(EXIT_SYNTAX_ERROR);
+	ft_free_split(get_lexic_token());
+	return (EXIT_SYNTAX_ERROR);
+}
 
 int	count_elem_char(char *rline, char c)
 {

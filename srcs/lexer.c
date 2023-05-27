@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 10:59:10 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/27 15:46:48 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/27 18:29:38 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int lexer(char  *rline)
 	char    **token;
 	
 	if (!valid_synthax_str(rline))
-		return (0);
+		return (exit_syntax_error());
 	token = ft_split_set(rline, " \t\r\v\f\n");
 	if (join_quote(&token) == EXIT_FAILURE)
 	{
@@ -127,12 +127,12 @@ int lexer(char  *rline)
 		return (EXIT_FAILURE);
 	set_lex_token(token);
 	if (!valid_syntax_token(token))
-		return (130);
+		return (exit_syntax_error());
 	else
 		return(1);
 }
 
-/*
+
 int main() {
     char input[100];
     printf("Enter a command: ");
@@ -155,4 +155,3 @@ int main() {
 
     return (0);
 }
-*/

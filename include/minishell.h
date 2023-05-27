@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:07 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/27 15:41:56 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/27 18:28:01 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 # define ENV "env"
 # define EXPORT "export"
 # define UNSET "unset"
+
+# define EXIT_SYNTAX_ERROR 258
+# define EXIT_CMD_NOT_FOUND 127
+# define EXIT_CTRL_D 130
 
 //////////////////// strucure-quote  //////////////
 
@@ -98,6 +102,7 @@ void 	free_token_stack(t_token *head);
 
 //////////// verif_synthax.c ////////////////////
 
+int		exit_syntax_error(void);
 bool	valid_synthax_str(char	*rline);
 int		count_elem_char(char *rline, char c);
 bool 	is_correct_sub(char *rline, int i);
@@ -160,6 +165,12 @@ bool	is_correct_spe(char	*token);
 bool	is_correct_pipe(char *current, char *next);
 bool	is_special(char *token, int type);
 bool	valid_syntax_token(char	*token[]);
+
+///////////////// error.c //////////////////////
+
+int get_error_code(int err_code, bool set_err);
+void    set_err_code(int err_code);
+int	get_err_code(void);
 
 ///////////////////////////////////////////////////
 
