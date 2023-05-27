@@ -6,7 +6,7 @@
 #    By: nassm <nassm@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/12 15:42:51 by nsalhi            #+#    #+#              #
-#    Updated: 2023/05/26 13:57:34 by nassm            ###   ########.fr        #
+#    Updated: 2023/05/27 15:00:56 by nassm            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,17 @@ SRC = 	ft_isalpha.c \
 	ft_free_str.c \
 	ft_setinstr.c \
 	ft_strclen.c \
+	ft_realloc_str.c \
+	ft_add_str_to_tab.c \
+	ft_append.c \
+	ft_strstr.c \
+	ft_strstrjoin.c \
+	ft_free_single_str.c \
+	ft_free_str_array.c \
+	ft_str_arr_len.c \
+	ft_realloc_str_arr.c \
+	ft_free.c \
+	ft_append_len_div.c \
 
 BONUSSRC =	ft_lstnew.c \
 		ft_lstadd_front.c \

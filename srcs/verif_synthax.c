@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:04:32 by nsalhi            #+#    #+#             */
-/*   Updated: 2023/05/26 10:57:17 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/27 09:48:31 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	count_elem_char(char *rline, char c)
 	return (count);
 }
 
-bool is_correct_subshell(char *rline, int i)
+bool is_correct_sub(char *rline, int i)
 {
 	while (i > 0 && rline[i] && rline[i] != '(')
 		i--;
@@ -53,7 +53,7 @@ bool	bracket_closed(char *rline, int i)
 	return (true);
 }
 
-bool	valid_synthax(char	*rline)
+bool	valid_synthax_str(char	*rline)
 {
 	int	i;
 
@@ -69,7 +69,7 @@ bool	valid_synthax(char	*rline)
 			while (rline[++i] && rline[i] != '\"')
 				;
 		if (rline[i] == '(')
-			if (!is_correct_subshell(rline, i - 1))
+			if (!is_correct_sub(rline, i - 1))
 				return (false);
 		if (rline[i] == ')')
 			if (!bracket_closed(rline, i))

@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 09:46:12 by nsalhi            #+#    #+#             */
-/*   Updated: 2023/05/26 13:57:42 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/27 15:01:16 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdint.h>
 # include "ft_printf/ft_printf.h"
 # include <fcntl.h>
+# include <stdbool.h>
 
 typedef struct s_list
 {
@@ -72,6 +73,7 @@ int		ft_tolower(int c);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strstr(const char *s, const char *to_find);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
@@ -83,6 +85,17 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int d);
+int		ft_setinstr(char *str, char *set);
+char	*ft_realloc_str(char *str, int size);
+int		ft_str_arr_len(char **arr);
+char	**ft_add_str_to_tab(char ***arr, int pos, char *new);
+char	*ft_append(char **dst, char *src);
+char	*ft_strstrjoin(char *s1, char *s2, char *divider);
+void	ft_free_single_str(char ***arr, int i);
+void	ft_free_str_array(char ***arr);
+char	**ft_realloc_str_arr(char **arr, int size);
+void	*ft_free(void **p);
+char	*ft_append_len_div(char **dst, char *src, int len, char *div);
 
 // Bonus
 t_list	*ft_lstnew(void *content);

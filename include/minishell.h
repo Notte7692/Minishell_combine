@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:07 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/26 14:07:55 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/27 15:41:56 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,76 @@ void	printf_exit(char *arg);
 /////////////// parsing.c //////////////////////
 void	free_tab(char **tab);
 size_t	ft_strlen(const char *str);
-int	tab_size(char *str);
+int		tab_size(char *str);
 char	**create_tab(char *av);
 t_token *create_token_stack(char **av);
-void print_token_stack(t_token *head);
-void free_token_stack(t_token *head);
+void 	print_token_stack(t_token *head);
+void 	free_token_stack(t_token *head);
 
 //////////// verif_synthax.c ////////////////////
 
-bool	valid_synthax(char	*rline);
+bool	valid_synthax_str(char	*rline);
+int		count_elem_char(char *rline, char c);
+bool 	is_correct_sub(char *rline, int i);
+bool	bracket_closed(char *rline, int i);
+
+//////////////// get_lex_set.c ///////////////////
+
+void	reset_lex_token(void);
+void	set_lex_token(char **lex_toks);
+char	**get_lexic_token(void);
+char	**get_lex_token(char **lex_toks, bool reset);
+
+//////////////// get_token_utils.c ///////////////
+
+bool	verif_is_token(char *token);
+
+///////////////	join_quotes.c ///////////////////
+
+int		find_quote_pos(char *str);
+t_quote *init_quote(char ***token, int i);
+int 	join_token(char ***token, int i);
+int 	join_quote(char ***token);
+
+/////////////// lexer.c /////////////////////////
+
+void	*ft_free_tab(char **tab);
+void	*free_token(char **token, char **resized);
+char    *get_next_token(char **token);
+char    *get_subtoken(char *token[], int *i);
+char    **resize_token(char **token);
+
+/////////////// sub_token_utils.c ////////////////
+
+int		get_subtoken_count(char *token[], int i);
+char    *get_end_subtoken(char *token[], int *i, char *sub_token);
+
+//////////////// utils_jquote.c ///////////////////
+
+int		first_start(char ***token, t_quote *quote);
+int 	second_start_norm(char ***token, t_quote *quote);
+int 	second_start(char ***token, t_quote *quote);
+int 	special_start(char ***token, t_quote *quote, int i);
+int 	token_join_all(char ***token, t_quote *quote, int i);
+
+/////////////// utils_jquote_bis.c ////////////////
+
+int		combine_loop(char ***token, t_quote *quote);
+int		token_join_end_one(char ***token, t_quote *quote);
+
+///////////////// utils_token.c //////////////////
+
+bool    token_is_right(char *token);
+char    get_next_special(char *token);
+size_t  get_next_token_size(char *token, char next_spe);
+
+////////////// check_token_synthax,c /////////////
+
+bool	is_redirection(char *token);
+bool	is_correct_spe(char	*token);
+bool	is_correct_pipe(char *current, char *next);
+bool	is_special(char *token, int type);
+bool	valid_syntax_token(char	*token[]);
 
 ///////////////////////////////////////////////////
 
