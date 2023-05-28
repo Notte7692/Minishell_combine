@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 09:46:12 by nsalhi            #+#    #+#             */
-/*   Updated: 2023/05/27 15:01:16 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/28 18:05:15 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
+int		ft_isspace(int c);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isprint(int c);
 int		ft_toupper(int c);

@@ -6,7 +6,7 @@
 #    By: nassm <nassm@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/12 15:42:51 by nsalhi            #+#    #+#              #
-#    Updated: 2023/05/27 15:00:56 by nassm            ###   ########.fr        #
+#    Updated: 2023/05/28 18:04:50 by nassm            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC = 	ft_isalpha.c \
 	ft_tolower.c \
 	ft_bzero.c \
 	ft_isdigit.c \
+	ft_isspace.c \
 	ft_memcmp.c \
 	ft_strchr.c \
 	ft_strncmp.c \

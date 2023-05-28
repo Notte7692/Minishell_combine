@@ -30,6 +30,11 @@
 		"streambuf": "c",
 		"tuple": "c",
 		"typeinfo": "c",
-		"utility": "c"
+		"utility": "c",
+		"cstdio": "c",
+		"cwchar": "c",
+		"initializer_list": "c",
+		"new": "c",
+		"stdexcept": "c"
 	}
 }
