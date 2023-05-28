@@ -6,11 +6,38 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 12:13:34 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/27 14:34:04 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/28 16:39:09 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+/*
+	The function is responsible for combining multiple tokens within a 
+	specified quote type (single or double quotes).
+
+	* The function enters a loop that continues as long as 
+	there are tokens (*token) and the current token ((*token)[quote->i]) 
+	does not contain the quote character (quote->quote).
+
+	* Within each iteration of the loop, the function uses ft_strstrjoin 
+	to concatenate the current token ((*token)[quote->i]) with itself,
+	separated by a space, effectively combining the token.
+
+	* If the concatenation operation fails (resulting in a NULL value),
+	the function returns EXIT_FAILURE to indicate a failure.
+
+	* The original token at index quote->i is freed using 
+	ft_free_single_str to release memory.
+
+	* The loop continues to the next iteration,
+	combining the subsequent tokens until a token containing 
+	the quote character is encountered.
+
+	*Once the loop ends,
+	the function returns EXIT_SUCCESS to indicate
+	s a successful combination of tokens.
+*/
 
 int combine_loop(char ***token, t_quote *quote)
 {
