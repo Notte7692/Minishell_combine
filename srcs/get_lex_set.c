@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:37:02 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/27 15:41:39 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/30 16:11:48 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ Essentially, it acts as a wrapper function that simplifies the process of
  setting the token array by invoking the underlying logic 
  of the get_lex_token function.
 */
+
 void	set_lex_token(char **lex_toks)
 {
 	get_lex_token(lex_toks, false);
@@ -72,7 +73,34 @@ void	set_lex_token(char **lex_toks)
 	of accessing the lexical tokens array
 	and provides a convenient way to obtain its value.
 */
+
 char	**get_lexic_token(void)
 {
 	return (get_lex_token(NULL, false));
+}
+
+/*
+	The functionis used to retrieve the current lexical
+	token from the token array during shell execution.
+
+	* It does so by accessing the token array using the iterator iter obtained from
+	the get_iter() function.
+	
+	* If the iterator iter is NULL, indicating an error or uninitialized state,
+	the function returns NULL.
+
+	* Otherwise, the function calls get_lexic_token() to retrieve the token array
+	and uses the iterator iter to access the current lexical token.
+	
+	* Finally, it returns the pointer to the current lexical token.
+*/
+
+char	*get_current_lex_token(void)
+{
+	t_iter	*iter;
+
+	iter = get_iter();
+	if (iter == NULL)
+		return (NULL);
+	return (get_lexic_token()[iter[lex]]);
 }

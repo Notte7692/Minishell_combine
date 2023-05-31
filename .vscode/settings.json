@@ -35,6 +35,7 @@
 		"cwchar": "c",
 		"initializer_list": "c",
 		"new": "c",
-		"stdexcept": "c"
+		"stdexcept": "c",
+		"libft.h": "c"
 	}
 }

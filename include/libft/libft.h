@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 09:46:12 by nsalhi            #+#    #+#             */
-/*   Updated: 2023/05/28 18:05:15 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/30 16:15:05 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int		ft_setinstr(char *str, char *set);
 char	*ft_realloc_str(char *str, int size);
 int		ft_str_arr_len(char **arr);
 char	**ft_add_str_to_tab(char ***arr, int pos, char *new);
+char	**ft_str_arr_dup(char **arr);
 char	*ft_append(char **dst, char *src);
 char	*ft_strstrjoin(char *s1, char *s2, char *divider);
 void	ft_free_single_str(char ***arr, int i);
@@ -97,6 +98,8 @@ void	ft_free_str_array(char ***arr);
 char	**ft_realloc_str_arr(char **arr, int size);
 void	*ft_free(void **p);
 char	*ft_append_len_div(char **dst, char *src, int len, char *div);
+char	**ft_sort_str_arr(char *unsorted[]);
+char	**ft_str_arr_realloc(char *array[], size_t size);
 
 // Bonus
 t_list	*ft_lstnew(void *content);

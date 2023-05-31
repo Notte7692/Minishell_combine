@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 10:59:10 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/28 18:24:30 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/31 18:26:41 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char    *get_next_token(char **token)
 
 	tmp= *token;
 	next_spe = get_next_special(tmp);
-	next_token = ft_calloc(get_next_token_size(tmp, next_spe) + 1, \
+	next_token = ft_calloc(get_token_size(tmp, next_spe) + 1, \
 			sizeof(*next_token));;
 	if (next_token == NULL)
 		return (NULL);
@@ -195,6 +195,7 @@ char    **resize_token(char **token)
 int lexer(char  *rline)
 {
 	char    **token;
+	int		exit_status;
 	
 	if (!valid_synthax_str(rline))
 		return (exit_syntax_error());
@@ -210,8 +211,8 @@ int lexer(char  *rline)
 	set_lex_token(token);
 	if (!valid_syntax_token(token))
 		return (exit_syntax_error());
-	else
-		return(1);
+	exit_status = parser(token);
+	return(exit_status);
 }
 
 /*
@@ -225,7 +226,8 @@ int main() {
 
     printf("Lexer result: %d\n", result);
 
-    if (result == 1) {
+    
+	if (result == 1) {
         char **tokens = get_lex_token(NULL, false);
         if (tokens != NULL) {
             printf("Tokens:\n");
@@ -234,6 +236,7 @@ int main() {
             }
         }
     }
+	
 
     return (0);
 }

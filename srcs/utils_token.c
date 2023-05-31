@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:35:55 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/28 17:51:48 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/30 09:01:31 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ char    get_next_special(char *token)
     which represents the size of the next token.
 */
 
-size_t  get_next_token_size(char *token, char next_spe)
+size_t  get_token_size(char *token, char next_spe)
 {
     size_t  size;
 
