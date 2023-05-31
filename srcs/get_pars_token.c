@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:08:44 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/31 15:35:12 by nassm            ###   ########.fr       */
+/*   Updated: 2023/05/31 20:36:55 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,24 @@
 	an array of t_par_tok structures.
 */
 
-static t_par_tok	**_get_par_toks(t_par_tok **par_toks, bool reset)
+static t_par_tok	**get_pars_toke(t_par_tok **pars_token, bool reset)
 {
-	static t_par_tok	**static_par_toks = NULL;
-
-	if (par_toks == NULL && !reset)
-		return (static_par_toks);
+	static t_par_tok	**static_pars_token = NULL;
+	
+	if (pars_token == NULL && !reset)
+		return (static_pars_token);
 	if (reset)
 	{
-		static_par_toks = NULL;
+		static_pars_token = NULL;
 		return (NULL);
 	}
-	static_par_toks = par_toks;
-	return (static_par_toks);
+	static_pars_token = pars_token;
+	return (static_pars_token);
 }
 
 t_par_tok	**get_pars_token(void)
 {
-	return (_get_par_toks(NULL, false));
+	return (get_pars_toke(NULL, false));
 }
 
 /*
@@ -64,7 +64,7 @@ t_par_tok	*get_current_par_token(void)
 
 void	set_pars_token(t_par_tok **pars_token)
 {
-	_get_par_toks(pars_token, false);
+	get_pars_toke(pars_token, false);
 }
 
 /*
@@ -74,5 +74,5 @@ void	set_pars_token(t_par_tok **pars_token)
 
 void	reset_pars_token(void)
 {
-	_get_par_toks(NULL, true);
+	get_pars_toke(NULL, true);
 }
