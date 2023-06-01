@@ -6,12 +6,12 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:01:00 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/30 21:28:55 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/01 10:05:04 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-/*
+
 int	execute_subshell(t_exp_tok *exp_tok)
 {
 	pid_t	pid;
@@ -45,7 +45,7 @@ static bool	is_redir(t_par_tok *par_tok)
 	return (false);
 }
 
-static int process_expression_tokens(t_exp_tok *exp_toks[], t_par_tok *par_toks[])
+static int process_express_tokens(t_exp_tok *exp_toks[], t_par_tok *par_toks[])
 {
 	int	i;
 
@@ -57,8 +57,11 @@ static int process_expression_tokens(t_exp_tok *exp_toks[], t_par_tok *par_toks[
 			if ((par_toks[i]->type == and && get_error_code() != EXIT_SUCCESS) \
 			|| (par_toks[i]->type == or && get_error_code() == EXIT_SUCCESS))
 				i++;
-			
+			reinterprete_env_vars(&par_toks[i + 1], &exp_toks[i + 1]);
 		}
+		else if (par_toks[i]->type == subshell)
+			set_err_code(execute_subshell(exp_toks[i]));
+		else if (is_redir(par_toks[i]))
+			set_err_code()
 	}
 }
-*/

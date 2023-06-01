@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 09:46:12 by nsalhi            #+#    #+#             */
-/*   Updated: 2023/05/30 16:15:05 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/01 10:27:07 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	*ft_free(void **p);
 char	*ft_append_len_div(char **dst, char *src, int len, char *div);
 char	**ft_sort_str_arr(char *unsorted[]);
 char	**ft_str_arr_realloc(char *array[], size_t size);
+int		ft_perror(int exit_status, char *msg);
 
 // Bonus
 t_list	*ft_lstnew(void *content);

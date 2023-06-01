@@ -6,12 +6,12 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 15:59:33 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/25 19:52:48 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/01 10:03:59 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-/*
+
 void	handle_sigint(int i)
 {
 	i = 0;
@@ -38,4 +38,3 @@ void	signal_crtl(void)
 	sigaction(SIGINT, &sa_int, NULL);
 	sigaction(SIGQUIT, &sa_quit, NULL);
 }
-*/
