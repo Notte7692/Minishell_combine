@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 09:46:12 by nsalhi            #+#    #+#             */
-/*   Updated: 2023/06/01 10:27:07 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/01 14:48:44 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <stdbool.h>
+# include <stdio.h>
 
 typedef struct s_list
 {

@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 19:39:21 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/31 18:29:19 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/01 14:59:06 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,6 @@ char	**expand_env_var(char *lex_token[])
 	get_current_par_token function and assigns them to the token variable.
 */
 
-/*
 void print_par_tok_array(t_par_tok** token_array) {
     for (int i = 0; token_array[i] != NULL; i++) {
         printf("Token %d:\n", i + 1);
@@ -274,11 +273,11 @@ void print_par_tok_array(t_par_tok** token_array) {
         printf("\n");
     }
 }
-*/
+
 
 int parser(char *lexer_token[])
 {
-	//t_par_tok	**token;
+	t_par_tok	**token;
 	int			exit_code;
 
 	lexer_token = expand_env_var(lexer_token);
@@ -290,15 +289,15 @@ int parser(char *lexer_token[])
 		return (EXIT_FAILURE);
 	if (exit_code == EXIT_SYNTAX_ERROR)
 		return (EXIT_SYNTAX_ERROR);
-	//token = get_pars_token();
-	//print_par_tok_array(token);
+	token = get_pars_token();
+	print_par_tok_array(token);
 	return (1);
 	//return (free_pars_token(token))
 }
 
 int main()
 {
-    char *tokens[] = {"ls", NULL};  // Predefined array of tokens
+    char *tokens[] = {"ls", "cat", "/dev/stdin", NULL};  // Predefined array of tokens
     int result_tokens;
 
     result_tokens = parser(tokens);
