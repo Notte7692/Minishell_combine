@@ -12,7 +12,7 @@ int	execute_child(t_exp_tok *exp_tok, char *abs_cmd_path, int status)
 		if (s == -1 || dup2(exp_tok->out, STDOUT_FILENO) == -1)
 			return (ft_perror(EXIT_FAILURE, "dup error"));
 	}
-	status = execve(abs_cmd_path, exp_tok->cmd, get_envv()->env_var);
+	status = execve(abs_cmd_path, exp_tok->cmd, get_envar()->env_var);
 	perror(NULL);
 	if (exp_tok->in != STDIN_FILENO)
 	{
