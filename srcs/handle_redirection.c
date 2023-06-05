@@ -54,33 +54,33 @@
 	*Finally, it returns EXIT_SUCCESS to indicate successful execution.
 */
 
-// static int	open_in(t_par_tok *par_token, t_exp_tok *exp_tok)
-// {
-// 	int		i;
-// 	int		fd;
-// 	int		heredeoc_fd;
+static int	open_in(t_par_tok *par_token, t_exp_tok *exp_tok)
+{
+	int		i;
+	int		fd;
+	int		heredeoc_fd;
 
-// 	i = 0;
-// 	fd = 0;
-// 	if (exp_tok->in != STDIN_FILENO)
-// 		heredeoc_fd = exp_tok->in;
-// 	while (par_token->redir_type[is_in] || par_token->redir_type[is_in_heredoc])
-// 	{
-// 		if (ft_strncmp(par_token->in[i++], "<<", 2) != 0)
-// 			fd = open(par_token->in[i], O_RDONLY);
-// 		else if (par_token->redir_type[is_in_heredoc])
-// 			fd = heredeoc_fd;
-// 		if (fd == -1)
-// 			return (ft_perror(EXIT_FAILURE, "open error"));
-// 		if (par_token->in[i + 1] == NULL)
-// 			break ;
-// 		if (fd != heredeoc_fd && fd != 0 && fd != 1)
-// 			close(fd);
-// 		i++;
-// 	}
-// 	exp_tok->in = fd;
-// 	return (EXIT_SUCCESS);
-// }
+	i = 0;
+	fd = 0;
+	if (exp_tok->in != STDIN_FILENO)
+		heredeoc_fd = exp_tok->in;
+	while (par_token->redir_type[is_in] || par_token->redir_type[is_in_heredoc])
+	{
+		if (ft_strncmp(par_token->in[i++], "<<", 2) != 0)
+			fd = open(par_token->in[i], O_RDONLY);
+		else if (par_token->redir_type[is_in_heredoc])
+			fd = heredeoc_fd;
+		if (fd == -1)
+			return (ft_perror(EXIT_FAILURE, "open error"));
+		if (par_token->in[i + 1] == NULL)
+			break ;
+		if (fd != heredeoc_fd && fd != 0 && fd != 1)
+			close(fd);
+		i++;
+	}
+	exp_tok->in = fd;
+	return (EXIT_SUCCESS);
+}
 
 /*
 	The function  is responsible for opening the output file(s) specified
@@ -121,48 +121,48 @@
 	*Finally, it returns EXIT_SUCCESS to indicate successful execution.
 */
 
-// static int	open_out(t_par_tok *par_token, t_exp_tok *exp_tok)
-// {
-// 	int		i;
-// 	int		fd;
+static int	open_out(t_par_tok *par_token, t_exp_tok *exp_tok)
+{
+	int		i;
+	int		fd;
 
-// 	i = 0;
-// 	fd = 1;
-// 	while (par_token->redir_type[is_out] || par_token->redir_type[is_out_append])
-// 	{
-// 		if (par_token->redir_type[is_out]
-// 			&& ft_strcmp(par_token->out[i++], ">") == 0)
-// 			fd = open(par_token->out[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
-// 		else if (par_token->redir_type[is_out_append]
-// 			&& ft_strcmp(par_token->out[i++], ">>") == 0)
-// 			fd = open(par_token->out[i], O_RDWR | O_CREAT | O_APPEND, 0644);
-// 		if (fd == -1)
-// 			return (ft_perror(EXIT_FAILURE, "open error"));
-// 		if (par_token->out[i + 1] == NULL)
-// 			break ;
-// 		if (fd != 0 && fd != 1)
-// 			close(fd);
-// 		i++;
-// 	}
-// 	exp_tok->out = fd;
-// 	return (EXIT_SUCCESS);
-// }
+	i = 0;
+	fd = 1;
+	while (par_token->redir_type[is_out] || par_token->redir_type[is_out_append])
+	{
+		if (par_token->redir_type[is_out]
+			&& ft_strcmp(par_token->out[i++], ">") == 0)
+			fd = open(par_token->out[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
+		else if (par_token->redir_type[is_out_append]
+			&& ft_strcmp(par_token->out[i++], ">>") == 0)
+			fd = open(par_token->out[i], O_RDWR | O_CREAT | O_APPEND, 0644);
+		if (fd == -1)
+			return (ft_perror(EXIT_FAILURE, "open error"));
+		if (par_token->out[i + 1] == NULL)
+			break ;
+		if (fd != 0 && fd != 1)
+			close(fd);
+		i++;
+	}
+	exp_tok->out = fd;
+	return (EXIT_SUCCESS);
+}
 
-// int	handle_redir(t_par_tok *par_tok, t_exp_tok *exp_tok, int pipe_type)
-// {
-// 	int	exit_status;
+int	handle_redir(t_par_tok *par_tok, t_exp_tok *exp_tok, int pipe_type)
+{
+	int	exit_status;
 	
-// 	if (open_in(par_tok, exp_tok) == EXIT_FAILURE)
-// 		return (EXIT_FAILURE);
-// 	if (open_out(par_tok, exp_tok) == EXIT_FAILURE)
-// 		return (EXIT_FAILURE);
-// 	if (handle_pipes(exp_tok, pipe_type) == EXIT_FAILURE)
-// 		return (EXIT_FAILURE);
-// 	if (par_tok->redir_type[is_pipe] == true)
-// 		exp_tok->is_pipe = true;
-// 	else
-// 		exp_tok->is_pipe = false;
-// 	if (par_tok->type == subshell)
-// 		return (execute_subshell(exp_tok));
-// 	exit_status = 
-// }
+	if (open_in(par_tok, exp_tok) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (open_out(par_tok, exp_tok) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (handle_pipes(exp_tok, pipe_type) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (par_tok->redir_type[is_pipe] == true)
+		exp_tok->is_pipe = true;
+	else
+		exp_tok->is_pipe = false;
+	if (par_tok->type == subshell)
+		return (execute_subshell(exp_tok));
+	exit_status = 
+}
