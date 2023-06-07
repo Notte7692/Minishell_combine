@@ -10,7 +10,7 @@ int handle_builtin_redirection(t_exp_tok *exp_tok)
 		pipes_save[STDIN_FILENO]	= dup(STDIN_FILENO);
 		if (pipes_save[STDIN_FILENO] == -1)
 			return(ft_perror(EXIT_FAILURE, "Pipe error"));
-		if (dup2(exp_token->in, STDIN_FILENO) == -1)
+		if (dup2(exp_tok->in, STDIN_FILENO) == -1)
 			return (ft_perror(EXIT_FAILURE, "Pipe_Error"));
 	}
 	if (exp_tok->out != STDOUT_FILENO)
@@ -18,7 +18,7 @@ int handle_builtin_redirection(t_exp_tok *exp_tok)
 		pipes_save[STDOUT_FILENO] = dup(STDOUT_FILENO);
 		if (pipes_save[STDOUT_FILENO] == -1)
 			return (ft_perror(EXIT_FAILURE, "dup error"));
-		if (dup2(exp_token->out, STDOUT_FILENO) == -1)
+		if (dup2(exp_tok->out, STDOUT_FILENO) == -1)
 			return (ft_perror(EXIT_FAILURE, "dup2 error"));
 	}
 	if (exp_tok->is_pipe == true)

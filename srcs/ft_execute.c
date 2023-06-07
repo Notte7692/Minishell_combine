@@ -184,7 +184,7 @@ int ft_execute(t_exp_tok *exp_tok)
 		cmd_not_found(exp_tok);
 		return (EXIT_CMD_NOT_FOUND);
 	}
-	exit_status = exec_cmd(exp_xtok, abs_cmd_path)
+	exit_status = exec_cmd(exp_tok, abs_cmd_path)
 
 	//creer une fonction aqui va faire l'execution et renvoyer u int a exit status
 	
