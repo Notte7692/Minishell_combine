@@ -31,19 +31,19 @@ int	execute_child(t_exp_tok *exp_tok, char *abs_cmd_path, int status)
 int	execute_builtin(t_exp_tok *exp_tok)
 {
 	if (ft_strcmp(exp_tok->cmd[0], "echo") == 0)
-		return (echo(exp_tok->cmd));
+		return (commande_echo(exp_tok->cmd));
 	if (ft_strcmp(exp_tok->cmd[0], "export") == 0)
-		return (echo(exp_tok->cmd));
+		return (commade_export(exp_tok->cmd));
 	if (ft_strcmp(exp_tok->cmd[0], "env") == 0)
-		return (env(exp_tok->cmd[0]));
+		return (commande_env(exp_tok->cmd[0]));
 	if (ft_strcmp(exp_tok->cmd[0], "cd") == 0)
-		return (cd(exp_tok->cmd));
+		return (commande_cd(exp_tok->cmd));
 	if (ft_strcmp(exp_tok->cmd[0], "pwd") == 0)
-		return (pwd());
+		return (commande_pwd());
 	if (ft_strcmp(exp_tok->cmd[0], "unset") == 0)
-		return (unset(exp_tok->cmd));
+		return (commande_unset(exp_tok->cmd));
 	if (ft_strcmp(exp_tok->cmd[0], "exit"))
-		return (Commande_exit(exp_tok->cmd[0]));
+		return (commande_exit(exp_tok->cmd[0]));
 	return (EXIT_FAILURE);
 }
 
