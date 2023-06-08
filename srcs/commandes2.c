@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:14:28 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/07 13:48:22 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/08 18:26:45 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,32 +74,53 @@ int	commande_unset(char **env, char *word)
 	return (EXIT_SUCCESS);
 }
 
-int	commande_exit(char *seconde)
+static bool	valid_exit(char **tab)
 {
 	int	i;
-
+	int	j;
+	
 	i = 0;
-	if (!seconde)
-	{	
-		printf ("exit\n");
-		return (EXIT_FAILURE);
-	}
-	while (seconde[i])
+	while(tab && tab[i])
 	{
-		if (seconde[i] == ' ')
-		{	
-			printf_exit2();
-			return (EXIT_SUCCESS);
+		j = 0;
+		while(tab[i][j])
+		{
+			if (ft_issign(tab[i][j]))
+				j++;
+			if (!ft_isdigit(tab[i][j]))
+				return (false);
+			j++;
 		}
-		if (seconde[i] < '0' || seconde[i] > '9')
-			printf_exit(seconde);
-		if ((seconde[i] >= 'a' && seconde[i] >= 'z')
-			|| (seconde[i] >= 'A' && seconde[i] >= 'Z'))
-			printf_exit(seconde);
-		if (i >= 20)
-			printf_exit(seconde);
 		i++;
 	}
-	printf ("exit\n");
-	return (EXIT_SUCCESS);
+	return (true);
+}
+
+int	commande_exit(char **tab)
+{
+	long	exit_code;
+	int		i;
+
+	i = 0;
+	if (ft_strncmp(tab[i], "exit", ft_strlen(tab[i])) != 0)
+		return (EXIT_FAILURE);
+	i++;
+	if (tab[i])
+		exit_code = ft_atol(tab[i]);
+	else
+		exit_code = get_err_code();
+	if (!valid_exit(tab + i) || ft_strlen(tab[i]) > 19)
+	{
+		ft_fprintf(STDERR_FILENO, "exit: not a valid argument\n");
+		exit_code = 255;
+	}
+	else if (tab[i] && tab[++i])
+	{
+		ft_fprintf(STDERR_FILENO, "exit: too many arguments\n");
+		ft_fprintf(STDERR_FILENO, "exit\n");
+		return (EXIT_FAILURE);
+	}
+	ft_fprintf(STDERR_FILENO, "exit\n");
+	exit(exit_code);
+	return (exit_code);
 }
