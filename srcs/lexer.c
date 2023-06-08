@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 10:59:10 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/31 18:26:41 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/08 11:13:19 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,29 +216,37 @@ int lexer(char  *rline)
 }
 
 /*
-int main() {
-    char input[100];
-    printf("Enter a command: ");
-    fgets(input, sizeof(input), stdin);
-    input[strlen(input) - 1] = '\0';  // Remove newline character
-
-    int result = lexer(input);
-
-    printf("Lexer result: %d\n", result);
-
-    
-	if (result == 1) {
-        char **tokens = get_lex_token(NULL, false);
-        if (tokens != NULL) {
-            printf("Tokens:\n");
-            for (int i = 0; tokens[i] != NULL; i++) {
-                printf("%s\n", tokens[i]);
-            }
-        }
-    }
+int main(int ac, char **envp)
+{
+    char *prompt = "Enter a command: ";
+    char *rline;
+    int exit_status;
+	t_env	*envar;
 	
+	envar = init_envar(envp);
+	set_envar(envar);
 
-    return (0);
+	if (ac != 1)
+		return (1);
+	exit_status = 0;
+    while ((rline = readline(prompt)) != NULL)
+    {
+        // Exit the loop if the user enters "exit" or "quit"
+        if (strcmp(rline, "exit") == 0 || strcmp(rline, "quit") == 0)
+        {
+            free(rline);
+            break;
+        }
+        add_history(rline);
+
+        exit_status = lexer(rline);
+
+        // Handle the exit status as needed
+        // ...
+
+        free(rline);
+    }
+
+    return (exit_status);
 }
 */
-

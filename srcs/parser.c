@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 19:39:21 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/01 14:59:06 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/08 11:13:54 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 	processing of the paragraph tokens.
 */
 
-static int	get_pars_tok(char *lex_tok[], t_par_tok *pars_tok[], t_iter *iter)
+int	get_pars_tok(char *lex_tok[], t_par_tok *pars_tok[], t_iter *iter)
 {
 	int	tmp;
 	
@@ -141,7 +141,7 @@ static int	get_token(char *lexer_token[])
 }
 */
 
-static int get_token(char *lexer_token[])
+int get_token(char *lexer_token[])
 {
     t_par_tok **pars_token;
     t_iter *iter;
@@ -245,35 +245,6 @@ char	**expand_env_var(char *lex_token[])
 	get_current_par_token function and assigns them to the token variable.
 */
 
-void print_par_tok_array(t_par_tok** token_array) {
-    for (int i = 0; token_array[i] != NULL; i++) {
-        printf("Token %d:\n", i + 1);
-        t_par_tok* token = token_array[i];
-        printf("Token Type: %d\n", token->type);
-        printf("Redir Type: ");
-        for (int j = 0; j < 5; j++) {
-            printf("%d ", token->redir_type[j]);
-        }
-        printf("\n");
-
-        printf("Command:\n");
-        for (size_t j = 0; j < token->cmd_size; j++) {
-            printf("%s\n", token->cmd[j]);
-        }
-
-        printf("Input:\n");
-        for (size_t j = 0; j < token->in_size; j++) {
-            printf("%s\n", token->in[j]);
-        }
-
-        printf("Output:\n");
-        for (size_t j = 0; j < token->out_size; j++) {
-            printf("%s\n", token->out[j]);
-        }
-        printf("\n");
-    }
-}
-
 
 int parser(char *lexer_token[])
 {
@@ -290,11 +261,42 @@ int parser(char *lexer_token[])
 	if (exit_code == EXIT_SYNTAX_ERROR)
 		return (EXIT_SYNTAX_ERROR);
 	token = get_pars_token();
-	print_par_tok_array(token);
-	return (1);
-	//return (free_pars_token(token))
+	return(free_pars_token(token, expander(token)));
 }
 
+
+int main(int argc, char *argv[], char **envp) {
+	//t_par_tok	**token;
+	int			exit_code;
+	t_env	*envar;
+	
+	envar = init_envar(envp);
+	set_envar(envar);
+	// Check if the required number of arguments is provided
+	if (argc < 2) {
+		printf("Usage: ./program_name <lexer_token>\n");
+		return EXIT_FAILURE;
+	}
+
+	// Call the parser function with the lexer_token argument
+	exit_code = parser(argv + 1);
+
+	// Process the exit code returned by the parser
+	switch (exit_code) {
+		case EXIT_FAILURE:
+			printf("Parser failed.\n");
+			break;
+		case EXIT_SYNTAX_ERROR:
+			printf("Syntax error.\n");
+			break;
+		default:
+			printf("Parser succeeded.\n");
+			break;
+	}
+
+	return exit_code;
+}
+/*
 int main()
 {
     char *tokens[] = {"ls", "cat", "/dev/stdin", NULL};  // Predefined array of tokens
@@ -307,4 +309,4 @@ int main()
 		printf("1\n");
     return 0;
 }
-
+*/

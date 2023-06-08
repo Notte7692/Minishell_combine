@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:18:45 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/31 10:24:39 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/07 19:04:58 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 static t_env	*get_env_v(t_env	*envar)
 {
-	static	t_env	*static_envar = NULL;
+	static t_env	*static_envar = NULL;
 	
 	if (envar == NULL)
 		return (static_envar);

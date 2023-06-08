@@ -6,12 +6,12 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:15 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/25 19:52:40 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/07 17:26:09 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
+/*
 void	list_of_command(char *first, char *seconde, char **env, char *input)
 {
 	if (compare(first, ECHO) == 0 || compare(first, ECHO_N) == 0)
@@ -35,6 +35,7 @@ void	list_of_command(char *first, char *seconde, char **env, char *input)
 	free (first);
 	free (seconde);
 }
+*/
 /*
 int	main(int argc, char *argv[], char **env)
 {

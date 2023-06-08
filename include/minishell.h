@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:07 by nbechon           #+#    #+#             */
-/*   Updated: 2023/05/31 10:59:04 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/07 19:17:35 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <dirent.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <errno.h>
 
 # define ECHO "echo"
 # define ECHO_N "echo -n"
@@ -124,9 +127,9 @@ void	signal_crtl(void);
 
 //////////////////// commandes.c //////////////////
 
-void	commande_echo(char *first, char *word);
-int		commande_pwd(void);
-int		commande_cd(char *word);
+int	commande_echo(char **word);
+int	commande_pwd(void);
+int		commande_cd(char **word);
 
 ///////////////// takeword.c ////////////////////
 
@@ -139,10 +142,10 @@ int		compare(char *word, char *tmp);
 
 //////////////// commandes2.c //////////////////
 
-void	commande_env(char **env);
-void	commande_export(char **env);
-void	commande_unset(char **env, char *var_name);
-void	commande_exit(char *input);
+int	commande_env(char **env);
+int	commande_export(char **env);
+int	commande_unset(char **env, char *var_name);
+int	commande_exit(char *input);
 
 ////////////// all_printf.c ////////////////////
 
@@ -239,6 +242,9 @@ char	**expand_env_var(char *lex_token[]);
 
 void	get_env_var_valnorm(t_env *envar, char *var, char **value, int i);
 char    *get_env_var_val(t_env *envar, char *var);
+t_env	*init_envar(char **envp);
+void	free_envar(t_env *envar);
+int		init_again_envar(t_env	*envar, char **av);
 
 ////////////////// set_envar.c ////////////////
 
@@ -321,6 +327,76 @@ char    *get_subtoken(char *token[], int *i);
 char    **resize_token(char **token);
 int		lexer(char  *rline);
 
+////////////////////// expander_utils.c ////////////////
+
+int init(t_exp_tok **exp_tok);
+size_t get_tok_size(t_par_tok *par_toks[]);
+int free_exp_toks(t_exp_tok *exp_toks[], int exit_status);
+int get_tokens(t_par_tok *par_toks[]);
+int reinterprete_env_vars(t_par_tok *par_toks[], t_exp_tok *exp_toks[]);
+
+//////////////////// ft_execute.c  ///////////////////
+
+char	*clean_cmd(char *cmd);
+int 	clean_quote_exp_tok_cmd(t_exp_tok *exp_tok);
+bool	is_builtin(char *cmd);
+int		init_path(char **path_splitted[]);
+char	*get_abs_cmd_path(char *path_splitted, char *cmd);
+char	*get_cmd(char *cmd);
+void	cmd_not_found(t_exp_tok *exp_tok);
+int		exec_cmd(t_exp_tok *exp_tok, char *abs_cmd_path);
+int 	ft_execute(t_exp_tok *exp_tok);
+
+///////////////// parser.c //////////////////////////
+
+int	get_pars_tok(char *lex_tok[], t_par_tok *pars_tok[], t_iter *iter);
+int get_token(char *lexer_token[]);
+char		**expand_env_var(char *lex_token[]);
+int 		parser(char *lexer_token[]);
+
+/////////////////// exp_tok_utils.c /////////////////
+
+t_exp_tok   **get_exp_toks(void);
+void    set_exp_toks(t_exp_tok *exp_tok[]);
+void    reset_exp_toks(void);
+
+//////////////////// here_doc_utils.c ////////////////
+
+int	wait_for_heredoc(t_par_tok *par_tok, t_exp_tok *exp_tok,
+		char *buff, char *heredoc);
+
+///////////////////// signal.c ////////////////////
+
+void	cmd_signal(void);
+void	global_signal(void);
+
+////////////////// ft_execute_utils_bis.c ///////////
+
+int	execute_child(t_exp_tok *exp_tok, char *abs_cmd_path, int status);
+int	execute_builtin(t_exp_tok *exp_tok);
+int	execute_builtin_child(t_exp_tok *exp_tok);
+int	exbuiltin_reset_fd(t_exp_tok *exp_tok, int pipes_save[2]);
+
+//////////////// ft_execute_utils.c ////////////////
+
+int handle_builtin_redirection(t_exp_tok *exp_tok);
+
+////////////////// handle_pipe.c //////////////////
+
+int handle_pipes(t_exp_tok *exp_tok, int pipe_type);
+
+//////////////// expander.c//////////////////////
+
+int	execute_subshell(t_exp_tok *exp_tok);
+int	expander(t_par_tok *pars_token[]);
+
 ///////////////////////////////////////////////////
+
+////////////////// handle_redirection.c //////////
+
+int	handle_redir(t_par_tok *par_tok, t_exp_tok *exp_tok, int pipe_type);
+
+///////////////////////////////////////////////
+int	set_pipe_type(t_par_tok **par_toks, int i);
 
 #endif

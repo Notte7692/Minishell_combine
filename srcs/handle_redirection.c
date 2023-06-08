@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 20:56:51 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/01 14:53:12 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/08 12:31:26 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,51 @@ static int	open_out(t_par_tok *par_token, t_exp_tok *exp_tok)
 	return (EXIT_SUCCESS);
 }
 
+/*
+	The function performs handling of input and output redirections,
+	as well as handling of pipes, for a given par_tok (parse token)
+	and exp_tok (execution token).
+
+	*It declares an exit_status variable to store the exit status of the executed command.
+    
+	*It calls the open_in function to handle input redirection by
+	passing par_tok and exp_tok as arguments.
+	If the open_in function returns EXIT_FAILURE, indicating a failure
+	in opening input files, it immediately returns EXIT_FAILURE.
+    
+	*It calls the open_out function to handle output redirection by
+	passing par_tok and exp_tok as arguments.
+	If the open_out function returns EXIT_FAILURE, indicating a failure in
+	opening output files, it immediately returns EXIT_FAILURE.
+    
+	*It calls the handle_pipes function to handle pipes in the command by passing
+	exp_tok and pipe_type as arguments. If the handle_pipes function
+	returns EXIT_FAILURE, indicating a failure in handling pipes,
+	it immediately returns EXIT_FAILURE.
+    
+	*It checks the value of par_tok->redir_type[is_pipe].
+	If it is true, it sets exp_tok->is_pipe to true, indicating
+	that the command is part of a pipe. Otherwise, it sets exp_tok->is_pipe to false.
+    
+	*If the type of par_tok is subshell, it calls the execute_subshell function
+	to execute the subshell command contained in exp_tok.
+	If the execute_subshell function returns the exit status of
+	the subshell execution, it immediately returns that exit status.
+    
+	*Otherwise, it calls the ft_execute function to execute the command contained
+	in exp_tok and assigns the exit status to exit_status.
+    
+	*If the input file descriptor (exp_tok->in) is different from the
+	standard input file descriptor (STDIN_FILENO),
+	it closes the input file descriptor.
+    
+	*If the output file descriptor (exp_tok->out) is different from
+	the standard output file descriptor (STDOUT_FILENO),
+	it closes the output file descriptor.
+    
+	*Finally, it returns the exit status of the executed command.
+*/
+
 int	handle_redir(t_par_tok *par_tok, t_exp_tok *exp_tok, int pipe_type)
 {
 	int	exit_status;
@@ -164,5 +209,10 @@ int	handle_redir(t_par_tok *par_tok, t_exp_tok *exp_tok, int pipe_type)
 		exp_tok->is_pipe = false;
 	if (par_tok->type == subshell)
 		return (execute_subshell(exp_tok));
-	exit_status = 
+	exit_status = ft_execute(exp_tok);
+	if (exp_tok->in != STDIN_FILENO)
+		close(exp_tok->in);
+	if (exp_tok->out != STDOUT_FILENO)
+		close (exp_tok->out);
+	return (exit_status);
 }

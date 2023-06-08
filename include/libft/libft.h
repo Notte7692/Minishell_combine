@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 09:46:12 by nsalhi            #+#    #+#             */
-/*   Updated: 2023/06/01 14:48:44 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/07 17:08:17 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+int		ft_putstr(const char *str);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -83,10 +84,10 @@ char	**ft_split_set(char *str, char *set);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
+int		ft_putchar_fd(char c, int fd);
+int		ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int d);
+int		ft_putnbr_fd(int n, int d);
 int		ft_setinstr(char *str, char *set);
 char	*ft_realloc_str(char *str, int size);
 int		ft_str_arr_len(char **arr);
@@ -102,6 +103,16 @@ char	*ft_append_len_div(char **dst, char *src, int len, char *div);
 char	**ft_sort_str_arr(char *unsorted[]);
 char	**ft_str_arr_realloc(char *array[], size_t size);
 int		ft_perror(int exit_status, char *msg);
+int		ft_fprintf(int fd, const char *format, ...);
+int		ft_putlhex_fd(int fd, unsigned long long nbr);
+int		ft_putuhex_fd(int fd, unsigned long long nbr);
+int		ft_putptr_fd(int fd, void *ptr);
+int		ft_putunbr_fd(int fd, unsigned int nbr);
+int		ft_putlnbr_fd(int fd, long nbr);
+char	*ft_htoa(unsigned long long dec, int uppcase);
+int		ft_putlnbr(long nbr);
+int		ft_issign(char c);
+long	ft_atol(const char *str);
 
 // Bonus
 t_list	*ft_lstnew(void *content);

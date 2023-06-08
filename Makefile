@@ -34,7 +34,7 @@ $(NAME)	:	$(OBJS)
 			@echo "\033[0;31;5m|_|   |_||___| |_|  |__||___| |_______||__| |__||_______||_______||_______|\033[0m"
 			@echo "\033[0;33mCompilation...\033[0m"
 			make -C $(LIBFT_PATH)
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) -lreadline
 			@echo "\033[0;32mCompilation : OK.\033[0m"
 
 # $(OBJS)	: 	$(PATH_OBJS)/%.o: $(PATH_SRCS)/%.c include/philo.h

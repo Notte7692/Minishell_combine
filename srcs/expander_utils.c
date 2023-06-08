@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _utils.c                                   :+:      :+:    :+:   */
+/*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 18:18:55 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/01 18:44:07 by nassm            ###   ########.fr       */
+/*   Created: 2023/06/07 11:20:01 by nassm             #+#    #+#             */
+/*   Updated: 2023/06/07 11:39:58 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,7 +237,7 @@ int reinterprete_env_vars(t_par_tok *par_toks[], t_exp_tok *exp_toks[])
 		j = 0;
 		while (exp_toks[i]->cmd[j])
 		{
-			exp_toks[i]->cmd[j] = interprete_env_var(exp_toks[i]->cmd[j]);
+			exp_toks[i]->cmd[j] = interpret_env_var(exp_toks[i]->cmd[j]);
 			if (exp_toks[i]->cmd[j] == NULL)
 				return (EXIT_FAILURE);
 			j++;
