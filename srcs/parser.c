@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 19:39:21 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/08 11:13:54 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/08 14:06:47 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,7 +264,7 @@ int parser(char *lexer_token[])
 	return(free_pars_token(token, expander(token)));
 }
 
-
+/*
 int main(int argc, char *argv[], char **envp) {
 	//t_par_tok	**token;
 	int			exit_code;
@@ -296,7 +296,7 @@ int main(int argc, char *argv[], char **envp) {
 
 	return exit_code;
 }
-/*
+
 int main()
 {
     char *tokens[] = {"ls", "cat", "/dev/stdin", NULL};  // Predefined array of tokens

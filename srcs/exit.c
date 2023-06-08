@@ -22,7 +22,7 @@ static bool	is_valid_exit_arg(char *args[])
 	return (true);
 }
 
-int	exit_inbuilt(char *args[])
+int	exit_builtin(char *args[])
 {
 	long	exit_code;
 	int		i;

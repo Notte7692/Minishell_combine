@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 10:59:10 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/08 11:13:19 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/08 14:13:41 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,41 +212,7 @@ int lexer(char  *rline)
 	if (!valid_syntax_token(token))
 		return (exit_syntax_error());
 	exit_status = parser(token);
-	return(exit_status);
+	ft_free_split(token);
+	reset_lex_token();
+	return (exit_status);
 }
-
-/*
-int main(int ac, char **envp)
-{
-    char *prompt = "Enter a command: ";
-    char *rline;
-    int exit_status;
-	t_env	*envar;
-	
-	envar = init_envar(envp);
-	set_envar(envar);
-
-	if (ac != 1)
-		return (1);
-	exit_status = 0;
-    while ((rline = readline(prompt)) != NULL)
-    {
-        // Exit the loop if the user enters "exit" or "quit"
-        if (strcmp(rline, "exit") == 0 || strcmp(rline, "quit") == 0)
-        {
-            free(rline);
-            break;
-        }
-        add_history(rline);
-
-        exit_status = lexer(rline);
-
-        // Handle the exit status as needed
-        // ...
-
-        free(rline);
-    }
-
-    return (exit_status);
-}
-*/

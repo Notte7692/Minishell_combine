@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:07 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/07 19:17:35 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/08 14:42:59 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -395,6 +395,16 @@ int	expander(t_par_tok *pars_token[]);
 ////////////////// handle_redirection.c //////////
 
 int	handle_redir(t_par_tok *par_tok, t_exp_tok *exp_tok, int pipe_type);
+
+////////////////// exit.c /////////////////////
+
+int		exit_builtin(char *args[]);
+
+/////////////////// set_envp /////////////////
+
+void	set_envp(char **envp);
+char	**get_envp(void);
+void	reset_envp(void);
 
 ///////////////////////////////////////////////
 int	set_pipe_type(t_par_tok **par_toks, int i);

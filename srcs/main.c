@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:15 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/07 17:26:09 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/08 14:57:31 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,43 +36,73 @@ void	list_of_command(char *first, char *seconde, char **env, char *input)
 	free (seconde);
 }
 */
-/*
-int	main(int argc, char *argv[], char **env)
-{
-	char				*user_input;
-	char				*seconde;
-	char				*first;
-	char	**tab;
-	t_token *token_stack;
 
-	(void)argc;
-	(void)argv;
-	user_input = NULL;
-	token_stack = NULL;
-	tab = NULL;
-	if (isatty(STDIN_FILENO))
+static int	exit_core(void *to_free, int exit_status)
+{
+	char	**args;
+
+	if (exit_status == EXIT_CTRL_D)
 	{
-		signal_crtl();
-		while (1)
-		{
-			user_input = readline("$ ");
-			if (user_input == NULL)
-				break ;
-			tab = create_tab(user_input);
-    		token_stack = create_token_stack(tab);
-    		print_token_stack(token_stack);
-			free_token_stack(token_stack);
-    		free_tab(tab);
-			add_history(user_input);
-			first = take_firstword(user_input);
-			seconde = take_second_word(user_input);
-			list_of_command(first, seconde, env, user_input);
-			free(user_input);
-		}
+		args = ft_calloc(3, sizeof(args));
+		args[0] = ft_strdup("exit");
+		args[1] = ft_itoa(get_err_code());
+		exit_builtin(args);
+		ft_free_split(args);
 	}
-	else
-		printf("L'entrée standard n'est pas un terminal interactif.\n");
-	
-	return (0);
+	rl_clear_history();
+	free(to_free);
+	free_envar(get_envar());
+	return (exit_status);
 }
-*/
+
+static int	core(void)
+{
+	char	*buff;
+	int		exit_code;
+	
+	while(true)
+	{
+		buff = readline("minishell$ ");
+		if (ft_strlen(buff) > 0)
+			add_history(buff);
+		if (buff == NULL)
+			return (exit_core((void *)buff, EXIT_CTRL_D));
+		exit_code = lexer(buff);
+		if (exit_code == EXIT_FAILURE)
+			return (exit_core((void *)buff, EXIT_FAILURE));
+		free(buff);
+	}
+	return (exit_core((void *)buff, EXIT_FAILURE));
+}
+
+static int	manage_flags(int ac, char *av[])
+{
+	int	exit_code;
+
+	if (ac != 3 || ft_strcmp(av[1], "-c") != 0)
+	{
+		ft_fprintf(STDERR_FILENO, "Usage: ./minishell [Flag] \"[Command]\"\n");
+		ft_fprintf(STDERR_FILENO, "\t-c\tExecute Command without promot\n");
+		return (EXIT_FAILURE);
+	}
+	exit_code = lexer(av[2]);
+	free_envar(get_envar());
+	return (exit_code);
+}
+
+int	main(int ac, char **av, char **envp)
+{
+	t_env	*envar;
+	
+	global_signal();
+	envar = init_envar(envp);
+	if (envar == NULL)
+		return (EXIT_FAILURE);
+	set_envp(envp);
+	set_envar(envar);
+	if (ac != 1)
+		return (manage_flags(ac, av));
+	if (core() == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
