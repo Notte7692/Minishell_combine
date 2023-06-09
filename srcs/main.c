@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:15 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/08 18:44:38 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/09 13:18:01 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ int	main(int ac, char **av, char **envp)
 	if (ac != 1)
 		return (manage_flags(ac, av));
 	if (core() == EXIT_FAILURE)
+	{
+		free_envar(envar);
 		return (EXIT_FAILURE);
+	}
+	free_envar(envar);
 	return (EXIT_SUCCESS);
 }
