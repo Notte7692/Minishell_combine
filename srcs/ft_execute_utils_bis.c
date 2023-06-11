@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:28:39 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/08 19:55:47 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/11 15:41:27 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int	execute_builtin(t_exp_tok *exp_tok)
 		return (commande_cd(exp_tok->cmd));
 	if (ft_strcmp(exp_tok->cmd[0], "pwd") == 0)
 		return (commande_pwd());
-	// if (ft_strcmp(exp_tok->cmd[0], "unset") == 0)
-	//  	return (commande_unset(exp_tok->cmd));
+	if (ft_strcmp(exp_tok->cmd[0], "unset") == 0)
+	 	return (commande_unset(exp_tok->cmd));
 	if (ft_strcmp(exp_tok->cmd[0], "exit") == 0)
 		return (commande_exit(exp_tok->cmd));
 	return (EXIT_FAILURE);

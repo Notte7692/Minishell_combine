@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:14:28 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/11 14:41:50 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/11 15:50:23 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	commande_unset(char **tab)
 	while (tab[j])
 	{
 		i = 0;
-		while (envar->env_var)
+		while (envar->env_var[i])
 		{
 			out = norm_unset(tab, envar, i, j);
 			if (out == 2)
