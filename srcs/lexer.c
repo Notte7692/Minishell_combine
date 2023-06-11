@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 10:59:10 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/09 13:14:11 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/09 17:11:09 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ char    **resize_token(char **token)
 		if ((size_t)i[1] == resized_size - 1)
 			resized = ft_realloc_str_arr(resized, resized_size += 10);			
 	}
-	ft_free_str_array(&token);
+	ft_free_tab(token);
 	return (resized);
 }
 

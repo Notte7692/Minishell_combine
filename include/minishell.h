@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:07 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/08 18:00:40 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/11 14:21:11 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int		compare(char *word, char *tmp);
 
 int	commande_env(char **env);
 int	commande_export(char **env);
-int	commande_unset(char **env, char *var_name);
+int	commande_unset(char **tab);
 int	commande_exit(char **tab);
 
 ////////////// all_printf.c ////////////////////
