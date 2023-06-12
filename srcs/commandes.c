@@ -29,6 +29,8 @@ int	commande_echo(char **word)
 	{
 		write(1, *word, ft_strlen(*word));
 		word++;
+		if (word != NULL)
+			write (1, " ", 1);
 	}
 	if (new_line)
 		write(1, "\n", 1);
