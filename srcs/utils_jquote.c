@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 14:27:55 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/28 17:19:37 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/13 18:50:29 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ int second_start(char ***token, t_quote *quote)
     quote->i++;
     if (ft_setinstr((*token)[quote->i], quote->quote) == true)
     {
-        (*token)[quote->i] = ft_strstrjoin((*token)[quote->i],
+        (*token)[quote->j] = ft_strstrjoin((*token)[quote->j],
                 (*token)[quote->i], " ");
         if ((*token)[quote->i] == NULL)
             return (EXIT_FAILURE);
