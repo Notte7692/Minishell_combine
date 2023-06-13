@@ -6,13 +6,13 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:24:32 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/13 11:18:25 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/13 11:21:01 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-bool	echo_help(char *word)
+static bool	echo_help(char *word)
 {
 	int	i;
 	
