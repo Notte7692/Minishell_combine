@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:24:32 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/13 11:21:01 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/13 15:30:08 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ int	commande_echo(char **word)
 	if (ft_strncmp(*word, "echo", ft_strlen(*word)) != 0)
 		return (EXIT_FAILURE);
 	word++;
-	if (*word && ft_strncmp(*word, "-n", 2) == 0)
+	while (*word && ft_strncmp(*word, "-n", 2) == 0)
 	{
 		if (echo_help(*word) == true)
 		{
 			new_line = false;
 			word++;
 		}
+		else
+			break;
 	}
 	while (*word)
 	{

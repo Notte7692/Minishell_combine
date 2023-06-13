@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:14:28 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/11 15:50:23 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/13 15:37:22 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,29 +163,37 @@ static bool	valid_exit(char **tab)
 
 int	commande_exit(char **tab)
 {
-	long	exit_code;
-	int		i;
+	long    exit_code;
+    int        i;
 
-	i = 0;
-	if (ft_strncmp(tab[i], "exit", ft_strlen(tab[i])) != 0)
-		return (EXIT_FAILURE);
-	i++;
-	if (tab[i])
-		exit_code = ft_atol(tab[i]);
-	else
-		exit_code = get_err_code();
-	if (!valid_exit(tab + i) || ft_strlen(tab[i]) > 19)
-	{
-		ft_fprintf(STDERR_FILENO, "exit: not a valid argument\n");
-		exit_code = 255;
-	}
-	else if (tab[i] && tab[++i])
-	{
-		ft_fprintf(STDERR_FILENO, "exit: too many arguments\n");
-		ft_fprintf(STDERR_FILENO, "exit\n");
-		return (EXIT_FAILURE);
-	}
-	ft_fprintf(STDERR_FILENO, "exit\n");
-	exit(exit_code);
-	return (exit_code);
+    i = 0;
+    if (ft_strncmp(tab[i], "exit", ft_strlen(tab[i])) != 0)
+        return (EXIT_FAILURE);
+    i++;
+    if (tab[i])
+        exit_code = ft_atol(tab[i]);
+    else
+        exit_code = get_err_code();
+    if (ft_strlen(tab[i]) > 19)
+    {
+        ft_fprintf(STDERR_FILENO, "exit\n");
+        ft_fprintf(STDERR_FILENO, "exit: %s: numeric argument required\n", tab[1]);
+        exit_code = 255;
+    }
+    else if (!valid_exit(tab + i))
+    {
+        ft_fprintf(STDERR_FILENO, "exit\n");
+        ft_fprintf(STDERR_FILENO, "exit: numeric argument required\n");
+        exit_code = 255;
+    }
+    else if (tab[i] && tab[++i])
+    {
+        ft_fprintf(STDERR_FILENO, "exit\n");
+        ft_fprintf(STDERR_FILENO, "exit: too many arguments\n");
+        return (EXIT_FAILURE);
+    }
+    else
+        ft_fprintf(STDERR_FILENO, "exit\n");
+    exit(exit_code);
+    return (exit_code);
 }
