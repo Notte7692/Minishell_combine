@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:09:47 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/13 17:33:30 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/19 17:18:45 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int join_token(char ***token, int i)
 	* Once all tokens have been processed, the function returns EXIT_SUCCESS 
 	to indicate successful execution.
 */
-
+/*
 int join_quote(char ***token)
 {
 	int i;
@@ -227,3 +227,169 @@ int join_quote(char ***token)
 	}
 	return (EXIT_SUCCESS);
 }
+*/
+
+bool    find_quote(char *token)
+{
+    if (strchr(token, '\'') != NULL || strchr(token, '\"') != NULL)
+        return (true);
+    else
+    return (false);
+}
+
+bool    verif_even_squote(char *token)
+{
+    int i;
+    int count;
+
+    i = 0;
+    count = 0;
+    while (token[i])
+    {
+        if (token[i] == '\'')
+            count++;
+        i++;
+    }
+    if (count % 2 == 0)
+        return (true);
+    else
+        return (false);
+}
+
+bool    verif_even_dquote(char *token)
+{
+    int i;
+    int count;
+
+    i = 0;
+    count = 0;
+    while(token[i])
+    {
+        if (token[i] == '\"')
+            count++;
+        i++;
+    }
+    if (count % 2 == 0)
+        return (true);
+    else
+        return (false);
+}
+
+bool    count_quote(char *token)
+{
+    int i;
+
+    i = 0;
+    while (token[i])
+    {
+        if (token[i] == '\'')
+        {
+            if (verif_even_squote(token))
+                return (true);
+            else
+                return (false);
+        }
+        if (token[i] =='\"')
+        {
+            if (verif_even_dquote(token))
+                return (true);
+            else
+                return (false);
+        }
+        i++;
+    }
+    return (false);
+}
+
+void    handle_squote(char **token)
+{
+    int i = 0;
+    int j = 0;
+    int count = 0;
+
+    while ((*token) && (*token)[i])
+    {
+        if ((*token)[i] == '\'')
+            count++;
+        i++;
+    }
+
+    for (i = 0; (*token) && (*token)[i]; i++)
+    {
+        if ((*token)[i] != '\'') 
+        {
+            (*token)[j] = (*token)[i];
+            j++;
+        }
+    }
+
+    (*token)[j] = '\0';
+}
+
+void    handle_dquote(char **token)
+{
+    int i = 0;
+    int j = 0;
+
+    while((*token) && (*token)[i])
+    {
+        if ((*token)[i] != '\"')
+        {
+            (*token)[j] = (*token)[i];
+            j++;
+        }
+        i++;
+    }
+
+    (*token)[j] = '\0';
+}
+
+char    *utils_core_jquote(char *token)
+{
+    int i;
+
+    i = 0;
+    while (token && token[i])
+    {
+        if (token[i] == '\'')
+        {
+            handle_squote(&token);
+            break ;
+        }
+        if (token[i] == '\"')
+        {
+            handle_dquote(&token);
+            break ;
+        }
+        i++;
+    }
+    return (token);
+}
+
+int    core_jquote(char *token)
+{
+    if (count_quote(token) == true)
+	{
+        token = utils_core_jquote(token);
+		return (true);
+	}
+    return (false);
+}
+
+int join_quote(char **token)
+{
+    int i;
+
+    i = 0;
+    while (token && token[i])
+    {
+        if (find_quote(token[i]))
+		{
+           if(!core_jquote(token[i]))
+		   	return (EXIT_FAILURE);
+		}
+        i++;
+    }
+    return (EXIT_SUCCESS);
+}
+

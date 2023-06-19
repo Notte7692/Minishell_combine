@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 10:05:52 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/31 10:36:59 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/19 17:23:48 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,10 +155,14 @@ t_env	*init_envar(char **envp)
 void	free_envar(t_env *envar)
 {
 	envar->envp = NULL;
-	ft_free_str_array(&envar->env_var);
-	ft_free_str(&envar->pwd);
-	ft_free_str(&envar->oldpwd);
-	free(envar);
+	if (&envar->env_var)
+		ft_free_str_array(&envar->env_var);
+	if (envar->pwd)
+		free(envar->pwd);
+	if (envar->oldpwd)
+		free(envar->oldpwd);
+	if (envar)
+		free(envar);
 }
 
 /*

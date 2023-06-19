@@ -36,6 +36,7 @@
 		"initializer_list": "c",
 		"new": "c",
 		"stdexcept": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"minishell.h": "c"
 	}
 }

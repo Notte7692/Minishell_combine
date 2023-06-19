@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 10:59:10 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/09 17:11:09 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/19 16:39:47 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int lexer(char  *rline)
 	if (!valid_synthax_str(rline))
 		return (exit_syntax_error());
 	token = ft_split_set(rline, " \t\r\v\f\n");
-	if (join_quote(&token) == EXIT_FAILURE)
+	if (join_quote(token) == EXIT_FAILURE)
 	{
 		ft_free_str_array(&token);
 		return (EXIT_FAILURE);
