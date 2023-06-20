@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:09:47 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/20 17:34:59 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/20 21:31:12 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,26 +301,41 @@ bool    count_quote(char *token)
 	return (false);
 }
 
-void    handle_squote(char **token)
+void handle_squote(char **token)
 {
-	int i = 0;
-	int j = 0;
+	int i, j;
+	int has_dollar = 0;
 
+	// Vérifier si le caractère '$' est présent dans la chaîne
+	j = 0;
 	for (i = 0; (*token) && (*token)[i]; i++)
 	{
-		if (ft_strchr((*token), '$') == 0)
+		if ((*token)[i] == '$')
 		{
-			(*token)[j] = '\\';
-			j++;
+			has_dollar = 1;
+			break;
 		}
-		if ((*token)[i] != '\'') 
+	}
+	char *temp = strdup(*token);
+	// Si le caractère '$' est présent, insérer '\016' au début de la chaîne
+	if (has_dollar)
+	{
+		
+		(*token)[0] = '\016';
+		j++;
+	}
+		// Copier les caractères de la chaîne temporaire après '\016'
+	for (i = 0; temp[i]; i++)
+	{
+		if (temp[i] != '\'')
 		{
-			(*token)[j] = (*token)[i];
+			(*token)[j] = temp[i];
 			j++;
 		}
 	}
-
 	(*token)[j] = '\0';
+	free(temp);
+	
 }
 
 
