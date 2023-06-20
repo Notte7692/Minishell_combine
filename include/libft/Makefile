@@ -6,7 +6,7 @@
 #    By: nassm <nassm@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/12 15:42:51 by nsalhi            #+#    #+#              #
-#    Updated: 2023/06/07 17:07:56 by nassm            ###   ########.fr        #
+#    Updated: 2023/06/20 11:10:12 by nassm            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ SRC = 	ft_isalpha.c \
 	ft_putlnbr.c \
 	ft_issign.c \
 	ft_atol.c \
+	ft_strndup.c \
 
 BONUSSRC =	ft_lstnew.c \
 		ft_lstadd_front.c \

@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 14:27:55 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/13 18:50:29 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/20 16:00:29 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,7 @@ int special_start(char ***token, t_quote *quote, int i)
     else
         quote->end = NULL;
     quote->start = ft_realloc_str(quote->start,
-            ft_strclen(quote->start + 1, *quote->quote + 2));
+            ft_strclen(quote->start + 1, *quote->quote) + 2);
     if (quote->start == NULL)
         return (EXIT_FAILURE);
     ft_free_str(&(*token)[i]);

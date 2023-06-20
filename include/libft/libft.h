@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 09:46:12 by nsalhi            #+#    #+#             */
-/*   Updated: 2023/06/07 17:08:17 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/20 11:10:34 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ char	*ft_htoa(unsigned long long dec, int uppcase);
 int		ft_putlnbr(long nbr);
 int		ft_issign(char c);
 long	ft_atol(const char *str);
+char	*ft_strndup(const char *s1, int n);
 
 // Bonus
 t_list	*ft_lstnew(void *content);
