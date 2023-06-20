@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:09:47 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/20 17:21:05 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/20 17:34:59 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,11 @@ void    handle_squote(char **token)
 
 	for (i = 0; (*token) && (*token)[i]; i++)
 	{
+		if (ft_strchr((*token), '$') == 0)
+		{
+			(*token)[j] = '\\';
+			j++;
+		}
 		if ((*token)[i] != '\'') 
 		{
 			(*token)[j] = (*token)[i];

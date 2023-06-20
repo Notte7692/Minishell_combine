@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 09:56:51 by nassm             #+#    #+#             */
-/*   Updated: 2023/05/30 17:09:01 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/20 17:33:56 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,10 +148,14 @@ char	*get_var(char *lex_tok)
 char	*interpret_env_var(char *lex_token)
 {
 	char	*result_token;
+	int		i;
 	
+	i = 0;
 	result_token = lex_token;
-	if (lex_token[0] != '\'' && ft_strlen(lex_token) > 1
-			&& ft_strchr(lex_token, '$'))
+	while (lex_token[i] == '\'')
+		i++;
+	if (lex_token[i] != '\"' && ft_strlen(lex_token) > 1
+			&& ft_strchr(lex_token, '$') && !ft_strchr(lex_token, '\\'))
 	{
 		if (ft_strstr(lex_token, "&?"))
 		{
