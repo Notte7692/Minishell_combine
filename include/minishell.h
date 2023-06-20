@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:10:07 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/20 15:22:22 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/20 17:20:18 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ bool	verif_is_token(char *token);
 int		find_quote_pos(char *str);
 t_quote *init_quote(char ***token, int i);
 int 	join_token(char ***token, int i);
-int 	join_quote(char ***token);
+int 	join_quote(char **token);
 
 /////////////// lexer.c /////////////////////////
 
@@ -408,5 +408,8 @@ void	reset_envp(void);
 
 ///////////////////////////////////////////////
 int	set_pipe_type(t_par_tok **par_toks, int i);
+
+void	handle_cmd_signal(int sig);
+
 
 #endif

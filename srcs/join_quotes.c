@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:09:47 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/20 15:45:39 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/20 17:21:05 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int join_token(char ***token, int i)
 	* Once all tokens have been processed, the function returns EXIT_SUCCESS 
 	to indicate successful execution.
 */
-
+/*
 int join_quote(char ***token)
 {
 	int i;
@@ -217,7 +217,7 @@ int join_quote(char ***token)
 			else
 			{
 				if (ft_setinstr((*token)[i], "\'\"") == false)
-					i +=2;
+					i += 2;
 				else
 					i++;
 			}
@@ -227,7 +227,7 @@ int join_quote(char ***token)
 	}
 	return (EXIT_SUCCESS);
 }
-
+*/
 
 bool    find_quote(char *token)
 {
@@ -318,93 +318,70 @@ void    handle_squote(char **token)
 	(*token)[j] = '\0';
 }
 
-char	*find_var(t_env *envar, char *cpy)
+
+void    handle_dquote(char *token)
 {
-	int		len;
-	int		i;
-	char	**env_var;
-	
-	len = 0;
-	env_var = NULL;
-	while (envar->env_var && envar->env_var[len])
+	int i = 0;
+	int j = 0;
+
+	while (token && token[i])
 	{
-		env_var[len] = ft_strdup(envar->env_var[len]);
-		len++;
-	}
-	i = 0;
-	while (i < len)
-	{
-		if (ft_strncmp(cpy, envar->env_var[i], ft_strlen(cpy) - 1) == 0)
+		if (token[i] != '\"')
 		{
-			cpy = envar->env_var[i + ft_strlen(cpy)];
-			return (cpy);
+			token[j] = token[i];
+			j++;
 		}
 		i++;
 	}
-	return (NULL);
+	token[j] = '\0';
 }
 
-char	*write_var(char *token, char *cpy)
+char    *utils_core_jquote(char *token)
 {
-	char	*tmp;
-	int		i;
-	int		j;
-	int		k;
+	int i;
 
-	tmp = ft_strdup(token);
-	if (!tmp)
-		return (NULL);
-	token = realloc((void *)token, (ft_strlen(tmp) + ft_strlen(cpy) + 1));
-	if (!token)
-		return (NULL);
 	i = 0;
-	j = 0;
-	k = 0;
-	while (tmp && tmp[i])
+	while (token && token[i])
 	{
-		if (tmp[i] != '$')
-			token[++j] = tmp[i++];
-		if (tmp[i] == '$')
+		if (token[i] == '\'')
 		{
-			i++;
-			while (tmp[i] >= 'A' && tmp[i] <= 'Z')
-				i++;
-			while (cpy && cpy[k])
-				token[j++] = cpy[k++];
+			handle_squote(&token);
+			break ;
 		}
+		if (token[i] == '\"')
+		{
+			handle_dquote(token);
+			break ;
+		}
+		i++;
 	}
-	token[j] = '\0';
-	free(tmp);
-	free(cpy);
 	return (token);
 }
 
-bool	handle_variable(char *token, int i)
+int    core_jquote(char *token)
 {
-	t_env	*envar;
-	int		j;
-	char	*cpy;
-	envar = get_envar();
+	if (count_quote(token) == true)
+	{
+		token = utils_core_jquote(token);
+		return (true);
+	}
+	return (false);
+}
 
-	i++;
-	j = i;
-	while (token[i] && token[i] >= 'A' && token[i] <= 'Z')
+int join_quote(char **token)
+{
+	int i;
+
+	i = 0;
+	while (token && token[i])
 	{
-		j++;
-		
+		if (find_quote(token[i]))
+		{
+		   if(!core_jquote(token[i]))
+		   	return (EXIT_FAILURE);
+		}
+		i++;
 	}
-	cpy = ft_strndup(&token[i - 1], j);
-	cpy = find_var(envar, cpy);
-	if (cpy != NULL)
-	{
-		write_var(token, cpy);
-	}
-	else
-		return (false);
-	if (cpy != NULL)
-		free(cpy);
-	return (true);
-	
-		
+	return (EXIT_SUCCESS);
 }
 

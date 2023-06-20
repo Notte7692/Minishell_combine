@@ -6,13 +6,13 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 15:59:33 by nbechon           #+#    #+#             */
-/*   Updated: 2023/06/07 10:48:20 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/20 16:13:05 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void	handle_cmd_signal(int sig)
+void	handle_cmd_signal(int sig)
 {
 	if (sig == SIGINT)
 	{
