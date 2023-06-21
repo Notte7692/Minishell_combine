@@ -6,7 +6,7 @@
 /*   By: nassm <nassm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 09:56:51 by nassm             #+#    #+#             */
-/*   Updated: 2023/06/20 21:10:52 by nassm            ###   ########.fr       */
+/*   Updated: 2023/06/21 10:28:37 by nassm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ char	*interpret_env_var(char *lex_token)
 	if (lex_token[i] != '\016' && ft_strlen(lex_token) > 1
 			&& ft_strchr(lex_token, '$') && !ft_strchr(lex_token, '\016'))
 	{
-		if (ft_strstr(lex_token, "&?"))
+		if (ft_strstr(lex_token, "$?"))
 		{
 			free(lex_token);
 			return (ft_itoa(get_err_code()));
